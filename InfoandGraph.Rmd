@@ -1,0 +1,52 @@
+---
+title: "Mini Project"
+date: "2022-11-17"
+output: pdf_document
+---
+
+# Packages used:
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(Lock5Data)
+library(bnlearn)
+library(bnstruct)
+library(visNetwork)
+our_study <- SleepStudy |> 
+  select(GPA, AverageSleep, Happiness, DASScore, ClassesMissed) |>
+  relocate(AverageSleep, .before = GPA) |>
+  mutate(ClassesMissed = as.double(ClassesMissed)) |>
+  mutate(DASScore = as.double(DASScore)) |>
+  mutate(Happiness = as.double(Happiness)) 
+```
+
+A peek at our data:
+```{r}
+our_study |> head()
+```
+
+
+# Graphing our BBN:
+
+```{r}
+structure <- empty.graph(c("AvgSleep", "GPA", "DASScore", "Happiness", "ClassesMissed"))
+modelstring(structure) <- "[AvgSleep][ClassesMissed][GPA][DASScore][Happiness][GPA|AvgSleep][DASScore|AvgSleep][Happiness|ClassesMissed][Happiness|GPA][Happiness|DASScore][ClassesMissed|AvgSleep]"
+plot.network <- function(structure, ht = "400px"){
+  nodes.uniq <- unique(c(structure$arcs[,1], structure$arcs[,2]))
+  nodes <- data.frame(id = nodes.uniq,
+                      label = nodes.uniq,
+                      color = "pink",
+                      shadow = TRUE)
+  edges <- data.frame(from = structure$arcs[,1],
+                      to = structure$arcs[,2],
+                      arrows = "to",
+                      smooth = TRUE,
+                      shadow = TRUE,
+                      color = "black")
+  return(visNetwork(nodes, edges, height = ht, width = "100%"))
+}
+plot.network(structure)
+```
+
+
