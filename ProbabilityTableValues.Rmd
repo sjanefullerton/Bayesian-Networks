@@ -1,0 +1,210 @@
+---
+title: "Values for Probability Tables"
+output: html_document
+date: "2022-11-16"
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(Lock5Data)
+```
+
+
+
+Table 1 Column 1 (Happiness = 1)
+``` {r}
+#Values for the first column of the first table 
+H_HHH <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#H_HHH = 13
+
+H_LHH <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#H_LHH = 9
+
+H_HLH <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+#H_HLH = 17
+
+
+H_LLH <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed < 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+
+#H_LLH = 4
+
+H_HHL <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+#H_HHL = 16
+
+H_LHL <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+
+#H_LHL = 19
+
+H_HLL <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+
+#H_HLL = 36
+
+H_LLL <- SleepStudy |> 
+  filter(Happiness >= 28 & (ClassesMissed < 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+#H_LLL = 16
+
+```
+Table 1 Column 2 (Happiness = 0)
+``` {r}
+#Values for the second column of the first table 
+
+L_HHH <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#L_HHH =20
+
+L_LHH <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#L_LHH = 14
+
+L_HLH <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+#L_HLH = 35
+
+
+L_LLH <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed < 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+
+#L_LLH = 15
+
+L_HHL <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+#L_HHL = 9
+
+L_LHL <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+
+#L_LHL = 8 
+
+L_HLL <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+
+#L_HLL = 13
+
+L_LLL <- SleepStudy |> 
+  filter(Happiness < 28 & (ClassesMissed < 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+#L_LLL = 9
+
+```
+Table 2 Column 1 (Sleep = 1)
+``` {r}
+
+#Values for the first column of the second table 
+
+SH_HHH <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#SH_HHH = 9
+
+SH_LHH <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#SH_LHH = 13
+
+SH_HLH <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+#SH_HLH = 26
+
+
+SH_LLH <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed < 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+
+#SH_LLH = 9
+
+SH_HHL <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+#SH_HHL = 10
+
+SH_LHL <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+
+#SH_LHL = 12
+
+SH_HLL <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+
+#SH_HLL = 29
+
+SH_LLL <- SleepStudy |> 
+  filter(AverageSleep > 8 & (ClassesMissed < 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+#SH_LLL = 16
+
+```
+Table 2 Column 2 (Sleep = 0)
+``` {r}
+#Values for the second column of the second table 
+
+SL_HHH <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#SL_HHH = 24
+
+SL_LHH <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore >= 16) ) |>
+  count()
+#SL_LHH = 10
+
+SL_HLH <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+#SL_HLH = 26
+
+
+SL_LLH <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed < 1 & GPA < 3.31 & DASScore >= 16) ) |>
+  count()
+
+#SL_LLH = 10
+
+SL_HHL <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed >= 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+#SL_HHL = 15
+
+SL_LHL <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed < 1 & GPA >= 3.31 & DASScore < 16) ) |>
+  count()
+
+#SL_LHL = 15
+
+SL_HLL <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed >= 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+
+#SL_HLL = 20
+
+SL_LLL <- SleepStudy |> 
+  filter(AverageSleep <= 8 & (ClassesMissed < 1 & GPA < 3.31 & DASScore < 16) ) |>
+  count()
+#SL_LLL = 9
+
+```
